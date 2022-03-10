@@ -65,10 +65,6 @@ jobs:
           images: havenewname/work_test
           flavor: |
             latest=true
-          tags: |
-            type=semver,pattern={{raw}}
-            type=ref,event=tag
-            type=ref,event=pr
 
       - 
         name: Login to DockerHub
