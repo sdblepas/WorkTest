@@ -56,7 +56,7 @@ jobs:
         with:
           images: havenewname/work_test
           flavor: |
-            latest: true
+            latest=true
           tags: |
             type=ref,event=tag
             type=ref,event=pr
