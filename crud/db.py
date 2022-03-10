@@ -39,8 +39,13 @@ def add_item(item: ListItem) -> str:
 
 
 def update_item(obj_id: str, item: ListItem) -> str:
-    res = coll.replace_one({"_id": ObjectId(obj_id)}, item.json())
-    return str(res.upserted_id)
+    try:
+        res = coll.replace_one({"_id": ObjectId(obj_id)}, item.dict())
+        if res.matched_count == 0:
+            return None
+    except InvalidId:
+        return None
+    return "ok"
 
 
 def delete_item(obj_id: str) -> str:

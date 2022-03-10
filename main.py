@@ -37,6 +37,8 @@ def delete_item(obj_id: str):
 @app.put("/item")
 def update_item(obj_id: str, item: ListItem):
     res = db.update_item(obj_id, item)
+    if res != "ok":
+        raise HTTPException(status_code=404, detail="No such ID")
     return {"new_object_id": res}
 
 
