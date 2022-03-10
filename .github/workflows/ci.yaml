@@ -28,7 +28,13 @@ jobs:
       - 
         name: Install dependencies
         run: pip install -r test_requirements.txt
-      
+        with:
+          mongodb-version: '5.0'
+          
+      -
+        name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.7.0
+        
       - 
         name: Run test
         run: pytest
