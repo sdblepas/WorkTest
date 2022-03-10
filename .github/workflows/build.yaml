@@ -1,0 +1,71 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - 
+        name: Checkout repository code
+        uses: actions/checkout@v2
+      
+      - 
+        name: Setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9.10'
+          architecture: 'x64'
+          cache: 'pip'
+
+      - 
+        name: Install dependencies
+        run: pip install -r test_requirements.txt
+
+      -
+        name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.7.0
+        with:
+          mongodb-version: '5.0'
+        
+      - 
+        name: Run test
+        run: pytest
+
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+
+      -
+        name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: havenewname/work_test
+
+      - 
+        name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      -
+        name: Build and push image
+        uses: docker/build-push-action@v2.9.0
+        with:
+          push: ${{ github.event_name == 'push'}}
+          tags: ${{ steps.meta.outputs.tags }}
+
