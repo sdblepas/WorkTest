@@ -57,6 +57,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TAG_TOKEN }}
           WITH_V: true
+          
       -
         name: Docker meta
         id: meta
