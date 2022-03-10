@@ -55,6 +55,11 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: havenewname/work_test
+          flavor: |
+            latest=true
+          tags: |
+            type=ref,event=tag
+            type=ref,event=pr
 
       - 
         name: Login to DockerHub
