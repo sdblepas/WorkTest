@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  app:
+    image: havenewname/work_test
+    ports:
+      - 80:80
+    environment:
+      - MONGO_URL=mongodb://mongo
+    depends_on:
+      - mongo
+
+  express:
+    image: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_URL=mongodb://mongo:27017
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:5.0.6
+    volumes:
+      - dbdata:/data/db
+  
+volumes:
+  dbdata:
