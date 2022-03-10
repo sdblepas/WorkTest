@@ -25,15 +25,16 @@ jobs:
           python-version: '3.9.10'
           architecture: 'x64'
           cache: 'pip'
+
       - 
         name: Install dependencies
         run: pip install -r test_requirements.txt
-        with:
-          mongodb-version: '5.0'
-          
+
       -
         name: Start MongoDB
         uses: supercharge/mongodb-github-action@1.7.0
+        with:
+          mongodb-version: '5.0'
         
       - 
         name: Run test
