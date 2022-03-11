@@ -2,7 +2,7 @@
 ---
 My Todo api, This api uses python FastAPI and MongoDB.
 
-![example workflow](https://github.com/idokrn/WorkTest/blob/main/.github/workflows/build.yaml/badge.svg)
+![example workflow](https://github.com/idokrn/WorkTest/actions/workflows/build.yaml/badge.svg)
 
 
 # Getting started
@@ -15,7 +15,7 @@ git clone https://github.com/idokrn/WorkTest.git && cd WorkTest
 Login to my Jfrog artifact registry
 
 ``` bash
-docker login idokrn.jfrog.io -u anonymous
+docker login idokrn.jfrog.io -u anonymous -p anonymous
 ```
 
 Bring the API up
