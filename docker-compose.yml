@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   app:
-    image: havenewname/work_test
+    image: idokrn.jfrog.io/default-docker-local/myapp/work_test:latest
     ports:
       - 80:80
     environment:
