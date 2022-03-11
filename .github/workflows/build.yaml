@@ -54,7 +54,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: havenewname/work_test
+          images: idokrn.jfrog.io/default-docker-local/havenewname/work_test
           flavor: |
             latest=true
 
