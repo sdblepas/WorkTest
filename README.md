@@ -2,7 +2,7 @@
 ---
 My Todo api, This api uses python FastAPI and MongoDB.
 
-![example workflow](https://github.com/idokrn/WorkTest/actions/workflows/build.yaml/badge.svg)
+[![build](https://github.com/idokrn/WorkTest/actions/workflows/build.yaml/badge.svg)](https://github.com/idokrn/WorkTest/actions)
 
 
 # Getting started
