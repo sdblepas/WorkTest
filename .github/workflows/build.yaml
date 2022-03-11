@@ -14,30 +14,25 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - 
-        name: Checkout repository code
+      - name: Checkout repository code
         uses: actions/checkout@v2
-      
-      - 
-        name: Setup python
+
+      - name: Setup python
         uses: actions/setup-python@v2
         with:
           python-version: '3.9.10'
           architecture: 'x64'
           cache: 'pip'
 
-      - 
-        name: Install dependencies
+      - name: Install dependencies
         run: pip install -r test_requirements.txt
 
-      -
-        name: Start MongoDB
+      - name: Start MongoDB
         uses: supercharge/mongodb-github-action@1.7.0
         with:
           mongodb-version: '5.0'
         
-      - 
-        name: Run test
+      - name: Run test
         run: pytest
 
   build:
@@ -45,31 +40,30 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v2
 
-      -
-        name: Docker meta
+      - name: Docker meta
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: idokrn.jfrog.io/default-docker-local/havenewname/work_test
+          images: havenewname/work_test
           flavor: |
             latest=true
+          tags: |
+            type=sha
 
-      - 
-        name: Login to DockerHub
+      - name: Login to Jfrog
         uses: docker/login-action@v1 
         with:
-          registry: idokrn.jfrog.io
-          username: ${{ secrets.JFROG_USER }}
-          password: ${{ secrets.JFROG_TOKEN }}
+          # registry: idokrn.jfrog.io
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       
-      -
-        name: Build and push image
+      - name: Build and push image
         uses: docker/build-push-action@v2.9.0
         with:
           push: ${{ github.event_name == 'push'}}
           tags: ${{ steps.meta.outputs.tags }}
+
 
