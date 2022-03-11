@@ -4,8 +4,8 @@ WORKDIR /app
 
 COPY ./requirements.txt ./requirements.txt
 
-RUN python3 -m pip install --upgrade pip wheel setuptools; \
-    pip3 install -r requirements.txt
+RUN python -m pip install --upgrade pip wheel setuptools; \
+    pip install -r requirements.txt
 
 COPY . .
 
