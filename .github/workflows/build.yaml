@@ -47,7 +47,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: havenewname/work_test
+          images: idokrn.jfrog.io/default-docker-virtual/havenewname/work_test
           flavor: |
             latest=true
           tags: |
@@ -56,9 +56,9 @@ jobs:
       - name: Login to Jfrog
         uses: docker/login-action@v1 
         with:
-          # registry: idokrn.jfrog.io
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          registry: idokrn.jfrog.io
+          username: ${{ secrets.JFROG_USER }}
+          password: ${{ secrets.JFROG_TOKEN }}
       
       - name: Build and push image
         uses: docker/build-push-action@v2.9.0
