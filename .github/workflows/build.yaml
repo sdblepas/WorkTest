@@ -47,7 +47,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: idokrn.jfrog.io/default-docker-virtual/havenewname/work_test
+          images: idokrn.jfrog.io/default-docker-remote/havenewname/work_test
           flavor: |
             latest=true
           tags: |
